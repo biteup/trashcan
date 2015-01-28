@@ -1,0 +1,33 @@
+{
+  "name": "toriaezu",
+  "version": "0.0.1",
+  "homepage": "https://github.com/wheresmybento/snakebite",
+  "authors": [
+    "Kelvin Tay <kelvintaywl@gmail.com>"
+  ],
+  "description": "stand-in mobile-web prototype app for Customers that talks to Snakebite API server",
+  "main": "app.js",
+  "keywords": [
+    "prototype",
+    "bootstrap",
+    "mobile-web",
+    "client"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ionic": "~0.9.27",
+    "ember": "~1.6",
+    "ember-data": "~1.0.0-beta.8"
+  },
+  "resolutions": {
+    "ember": ">= 1.8.1 < 2.0.0",
+    "handlebars": ">= 2.0.0 < 3.0.0"
+  }
+}

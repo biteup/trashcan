@@ -1,0 +1,15 @@
+{
+  "name": "toriaezu",
+  "version": "0.0.1",
+  "repository": "https//github.com/wheresmybento/toriaezu",
+  "description": "stand-in mobile-web prototype app for Customers that talks to Snakebite API server",
+  "author": "Kelvin Tay",
+  "main": "web.js",
+  "dependencies": {
+    "http-server": "^0.7.4",
+    "underscore": "^1.7.0"
+  },
+  "scripts": {
+    "start": "cd build && http-server"
+  }
+}

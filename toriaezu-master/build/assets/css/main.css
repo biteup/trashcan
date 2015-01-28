@@ -1,0 +1,19 @@
+/* 
+custom styles for Toriaezu.
+please load this stylesheet after ratchet css
+*/
+#footer, #navbar {
+	position: fixed;
+}
+
+#navbar * {
+	height: 48px;
+}
+
+.tabs-icon-only .icon:before {
+	line-height: 49px !important;
+}
+
+#search-menu .item {
+	height: 160px;
+}

@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title>toriaezu</title>
+    <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <link rel="stylesheet" href="assets/vendor/ionic/css/ionic.css">
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <script type="text/x-handlebars">
+    <!-- navbar -->
+    <div id="navbar" class="bar bar-header bar-assertive">
+      <h1 class="title">Recommended</h1>
+    </div>
+    <!-- main content -->
+    <div class="ionic content has-header">
+      <div id="search-bar" class="list">
+        <div class="item item-input-inset">
+          <label class="item-input-wrapper">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" placeholder="search">
+          </label>
+        </div>
+        {{ outlet }}
+      </div>
+      <!-- footer -->
+      <div id="footer" class="tabs tabs-icon-only">
+        <a class="tab-item">
+          <i class="icon ion-ios-location-outline"></i>
+        </a>
+        <a class="tab-item">
+          <i class="icon ion-ios-wineglass-outline"></i>
+        </a>
+        <a class="tab-item">
+          <i class="icon ion-ios-person-outline"></i>
+        </a>
+      </div>
+    </div>
+    </script>
+
+   <script type="text/x-handlebars" id="index">
+      <div id="search-menu" class="list">
+        {{#each item in model}}
+        <a class="item item-thumbnail-left" href="#">
+          {{#if item.img }}
+          <img {{ bind-attr src=item.img }}>
+          {{/if}}
+          <h2>{{ item.menu_name }}</h2>
+          <p>{{ item.restaurant_name }}</p>
+          {{#each tag in item.tags }}
+          <button class="button button-small button-light">
+            {{ tag }}
+          </button>
+          {{/each}}
+        </a>
+        {{/each}}
+      </div>
+    </script>
+
+    <script src="assets/vendor/ember/jquery.js"></script>
+    <script src="assets/vendor/ember/handlebars.js"></script>
+    <script src="assets/vendor/ember/ember.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>
