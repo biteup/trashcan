@@ -1,0 +1,34 @@
+{
+            "email": "info@gobbl.me",
+            "menus": [
+                {
+                    "price": 1000,
+                    "yums": 0,
+                    "tags": [
+                        "六本木ヒルズ",
+                        " 弁当",
+                        " 持ち帰り"
+                    ],
+                    "rating": 0,
+                    "currency": "JPY",
+                    "images": [
+                        "https://7f1ec60dce066b2c266b621d78d9636dbf9a1c31.googledrive.com/host/0B8-5mxk3uTUOVlhDdXNhUldJUnM/09_pintokona_info"
+                    ],
+                    "name": "お弁当"
+                }
+            ],
+            "description": "江戸時代のファストフードとしての\"鮨\"を, 現代の スピード感覚で提供する都心型回転寿司店",
+            "geolocation": {
+                "lon": 139.7301386,
+                "lat": 35.6613318
+            },
+            "_id": {
+                "$oid": "54f15f4b150e7300095ff811"
+            },
+            "tags": [
+                "Japanese",
+                " 寿司"
+            ],
+            "address": "東京都港区六本木6-4-1 六本木ヒルズハリウッドビューティプラザB2",
+            "name": "ぴんとこな"
+        }
