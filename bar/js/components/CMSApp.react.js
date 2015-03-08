@@ -13,12 +13,12 @@ var CMSApp = React.createClass({
 	},
 	componentDidMount: function() {
     	RestaurantStore.addChangeListener(this._onChange);
-  	},
-  	componentWillUnmount: function() {
+  },
+  componentWillUnmount: function() {
     	RestaurantStore.removeChangeListener(this._onChange);
-  	},
-  	render: function() {
-  		return (
+  },
+  render: function() {
+  	return (
   			<div>
   			  <h1>Restaurants</h1>
           {this.state.error ? <small>Error loading data</small> : null}
