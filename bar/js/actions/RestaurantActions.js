@@ -29,7 +29,24 @@ var RestaurantActions = {
 				ids: ids
 			});
 		}
-	}
+	},
+	loadDataFromServer: function() {
+		AppDispatcher.dispatch({
+			actionType: RestaurantConstants.RESTAURANTS_LOAD
+		});
+	},
+	loadDataFromServerSuccess: function(payload) {
+		AppDispatcher.dispatch({
+			actionType: RestaurantConstants.RESTAURANTS_LOAD_SUCCESS,
+			payload: payload
+		});
+	},
+	loadDataFromServerFailure: function(error) {
+		AppDispatcher.dispatch({
+			actionType: RestaurantConstants.RESTAURANTS_LOAD_FAILURE,
+			error: error
+		});
+	},
 
 }
 

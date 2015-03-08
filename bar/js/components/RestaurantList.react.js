@@ -12,17 +12,19 @@ var RestaurantList = React.createClass({
 		for(var item in this.state.restaurants) {
 			var r = this.state.restaurants[item];
 			items.push(
-				<li>{r.name} | {r.address} | <button onClick={this._onClickDelete.bind(this, item)}>del</button></li>
+				<li key={r.id}>{r.name} | {r.address} | <button onClick={this._onClickDelete.bind(this, item)}>del</button></li>
 			);
 		};
 		return (
-			<ul>
+			<ol>
 			{items}
-			</ul>
+			</ol>
 		)
 	},
 	_onClickDelete: function(id) {
-		alert('hello, ' + id);
+		if(confirm('Delete Restaurant #' + id + '?')){
+		RestaurantActions.delete(id);
+		}
 	}
 });
 

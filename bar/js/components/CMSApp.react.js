@@ -4,9 +4,7 @@ var RestaurantList = require('./RestaurantList.react');
 var RestaurantForm = require('./RestaurantForm.react');
 
 function getRestaurantState() {
-	return {
-		restaurants: RestaurantStore.getDataFromServer()
-	};
+  return RestaurantStore.getCurrent();
 }
 
 var CMSApp = React.createClass({
@@ -23,6 +21,8 @@ var CMSApp = React.createClass({
   		return (
   			<div>
   			  <h1>Restaurants</h1>
+          {this.state.error ? <small>Error loading data</small> : null}
+          {this.state.loading ? <small>Loading data...</small> : null}
   			  <RestaurantList restaurants={this.state.restaurants} />
   			  <hr />
   			  <RestaurantForm text="Add" />
@@ -30,7 +30,9 @@ var CMSApp = React.createClass({
   		)
   	},
   	_onChange: function() {
-      this.setState(getRestaurantState())
+      var state = getRestaurantState();
+      console.log('STATE', state);
+      this.setState(state);
     }
 });
 
