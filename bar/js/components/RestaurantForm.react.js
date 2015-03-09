@@ -20,19 +20,31 @@ var RestaurantForm = React.createClass({
 	_createForm: function() {
 		return (
 			<form action="#" onSubmit={this._sendForm}>
-				<label>Name</label>
-				<input type="text" name="name" placeholder="restaurant name" required />
-				<label>Description</label>
-				<input type="text" name="description" placeholder="restaurant description" required />
-				<label>Email</label>
-				<input type="email" name="email" placeholder="restaurant email" required />
-				<label>Address</label>
-				<input type="text" name="address" placeholder="restaurant address" required />
-				<label>Geolocation</label>
-				<input type='text' name='geolocation' placeholder="example format: 35.6604935,139.7300985]" />
-				<label>Tags</label>
-				<input type="text" name="tags" placeholder="restaurant tags" required />
-				<button type="submit">Create</button>
+			    <div className="form-group">
+					<label>Name</label>
+					<input type="text" className="form-control" name="name" placeholder="restaurant name" required />
+				</div>
+				<div className="form-group">
+					<label>Description</label>
+					<input type="text" className="form-control" name="description" placeholder="restaurant description" required />
+				</div>
+				<div className="form-group">
+					<label>Email</label>
+					<input type="email" className="form-control" name="email" placeholder="restaurant email" required />
+				</div>
+				<div className="form-group">
+					<label>Address</label>
+					<input type="text" className="form-control" name="address" placeholder="restaurant address" required />
+				</div>
+				<div className="form-group">
+					<label>Geolocation</label>
+					<input type='text' className="form-control" name='geolocation' placeholder="example format: 35.6604935,139.7300985]" />
+				</div>
+				<div className="form-group">
+					<label>Tags</label>
+					<input type="text" className="form-control" name="tags" placeholder="restaurant tags" required />
+				</div>
+				<button className="btn btn-success" type="submit">Create</button>
 			</form>
 		)
 	},
@@ -40,7 +52,7 @@ var RestaurantForm = React.createClass({
 		var createForm = this.state.editing? this._createForm() : null;
 		return (
 			<div>
-				<button onClick={this._showCreateForm}>Create Restaurant</button>
+				<button className="btn btn-primary" onClick={this._showCreateForm}>Create Restaurant</button>
 				{createForm}
 			</div>
 		)
