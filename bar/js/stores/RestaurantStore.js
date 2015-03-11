@@ -78,21 +78,37 @@ AppDispatcher.register(function(action) {
 		case RestaurantConstants.RESTAURANT_CREATE:
 			console.log('CREATE RESTAURANT action received');
 			if(action.payload){
-				create(action.payload);
+				SnakebiteAPI.createRestaurant(action.payload, function(resp){
+					console.log(resp);
+					if(!resp.error){
+						_error = null;
+					}
+					else {
+						_error = resp.body;
+					};
+					_loading = false;
+					RestaurantStore.emitChange();
+				},
+				function(err){
+					_error = err;
+					_loading = false;
+					RestaurantStore.emitChange();
+				});
 			};
-			RestaurantStore.emitChange();
 			break;
 		case RestaurantConstants.RESTAURANT_DELETE:
 			console.log('DELETE RESTAURANT action received');
 			SnakebiteAPI.deleteRestaurant(action.id, function(resp){
 				_error = null;
 				_loading = false;
-				RestaurantActions.loadDataFromServerSuccess({id: action.id});
+				//RestaurantActions.loadDataFromServerSuccess({id: action.id});
+				RestaurantStore.emitChange();
 			},
 			function(err){
 				_error = err;
 				_loading = false;
-				RestaurantActions.loadDataFromServerFailure(err);
+				//RestaurantActions.loadDataFromServerFailure(err);
+				RestaurantStore.emitChange();
 			});
 			break;
 		case RestaurantConstants.RESTAURANT_DELETE_SELECTED:

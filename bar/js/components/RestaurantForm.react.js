@@ -1,5 +1,6 @@
 var React = require('react');
 var RestaurantActions = require('../actions/RestaurantActions');
+var Modal = require('./commons/Modal.react');
 
 var RestaurantForm = React.createClass({
 	getInitialState: function () {
@@ -12,14 +13,45 @@ var RestaurantForm = React.createClass({
 	_showCreateForm: function() {
 		this.setState({editing: true, sent: false});
 	},
-	_sendForm: function(e) {
-		e.preventDefault();  // stop form from being sent (as of default form action)
+	_sendCreateForm: function(e) {
+		e.stopPropagation();  // stop form from being sent (as of default form action)
 		this.setState({editing: false, sent: true, loading: false});
-		RestaurantActions.create({});
+
+		var dctArrays = $("#addNewRestaurant").serializeArray();
+		var payload = {};
+		dctArrays.forEach(function(kv, index, arr){
+			payload[kv.name] = kv.value;
+		});
+		try {
+			payload = this._cleanPayload(payload);
+			RestaurantActions.create(payload);
+		}
+		catch(e) {
+			alert('Error processing input!');
+			return;
+		};
+	},
+	_cleanPayload: function(payload){
+		if(!!payload.geolocation){
+			// expecting user input with latitude, longitude order
+			var latlon = payload.geolocation.split(",");
+			payload.geolocation = {lon: parseFloat(latlon[1]), lat: parseFloat(latlon[0])};
+		}
+		else {
+			delete payload.geolocation;
+		}
+		if(!!payload.tags){
+			payload.tags = payload.tags.split(",");
+		}
+		else {
+			payload.tags = [];
+		}
+		return payload;
+
 	},
 	_createForm: function() {
 		return (
-			<form action="#" onSubmit={this._sendForm}>
+			<form id="addNewRestaurant" action="#">
 			    <div className="form-group">
 					<label>Name</label>
 					<input type="text" className="form-control" name="name" placeholder="restaurant name" required />
@@ -44,7 +76,6 @@ var RestaurantForm = React.createClass({
 					<label>Tags</label>
 					<input type="text" className="form-control" name="tags" placeholder="restaurant tags" required />
 				</div>
-				<button className="btn btn-success" type="submit">Create</button>
 			</form>
 		)
 	},
@@ -52,8 +83,8 @@ var RestaurantForm = React.createClass({
 		var createForm = this.state.editing? this._createForm() : null;
 		return (
 			<div>
-				<button className="btn btn-primary" onClick={this._showCreateForm}>Create Restaurant</button>
-				{createForm}
+				<button className="btn btn-primary" data-target="#mainModal" data-toggle="modal" data-backdrop="static" onClick={this._showCreateForm}>Add New</button>
+				<Modal title="Add New Restaurant" body={createForm} clickFn={this._sendCreateForm} confirmText="Save" />
 			</div>
 		)
 	}

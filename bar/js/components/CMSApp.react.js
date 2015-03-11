@@ -2,6 +2,8 @@ var React = require('react');
 var RestaurantStore = require('../stores/RestaurantStore');
 var RestaurantList = require('./RestaurantList.react');
 var RestaurantForm = require('./RestaurantForm.react');
+var Alert = require('./commons/Alert.react');
+
 
 function getRestaurantState() {
   return RestaurantStore.getCurrent();
@@ -20,8 +22,8 @@ var CMSApp = React.createClass({
   render: function() {
   	return (
   			<div>
+          {this.state.error ? <Alert type="danger" message={JSON.stringify(this.state.error)} /> : null}
   			  <h1>Restaurants</h1>
-          {this.state.error ? <small>Error loading data</small> : null}
           {this.state.loading ? <small>Loading data...</small> : null}
   			  <RestaurantList restaurants={this.state.restaurants} />
   			  <hr />
